@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/7/13
  */
 @Configuration
-@MapperScan("com.atguigu.ssyx.*.mapper")
+@MapperScan("com.atguigu.ssyx.**.mapper")
 public class MybatisPlusConfig {
     /**
      * 新的分页插件,一缓和二缓遵循mybatis的规则,
