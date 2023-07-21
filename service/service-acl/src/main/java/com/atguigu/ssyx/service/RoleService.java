@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author 17273
  * @date 2023/7/14
@@ -19,4 +22,8 @@ public interface RoleService extends IService<Role> {
      * @return 角色
      */
     IPage<Role> selectPage(Page<Role> rolePage, RoleQueryVo roleQueryVo);
+
+    Map<String, Object> findRoleByAdminId(Long adminId);
+
+    void saveAdminRole(Long adminId, List<Long> roleId);
 }
