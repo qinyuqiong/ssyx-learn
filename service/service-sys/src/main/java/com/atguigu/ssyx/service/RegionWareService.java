@@ -1,6 +1,8 @@
 package com.atguigu.ssyx.service;
 
 import com.atguigu.ssyx.model.sys.RegionWare;
+import com.atguigu.ssyx.vo.sys.RegionWareQueryVo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RegionWareService extends IService<RegionWare> {
 
+    Page<RegionWare> selectPage(Page<RegionWare> objectPage, RegionWareQueryVo regionWareQueryVo);
 }
