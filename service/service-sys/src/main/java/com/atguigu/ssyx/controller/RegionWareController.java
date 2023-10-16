@@ -1,17 +1,23 @@
 package com.atguigu.ssyx.controller;
 
+
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author user
- * @date 2023/10/16
+ * <p>
+ * 城市仓库关联表 前端控制器
+ * </p>
+ *
+ * @author atguigu
+ * @since 2023-10-16
  */
-@Api(tags = "区域仓库管理")
+@Api(tags = "地区仓库管理")
 @RestController
-@CrossOrigin
-@RequestMapping("/admin/sys/regionWare")
+@RequestMapping("/ssyx/region-ware")
 public class RegionWareController {
+
 }
+
