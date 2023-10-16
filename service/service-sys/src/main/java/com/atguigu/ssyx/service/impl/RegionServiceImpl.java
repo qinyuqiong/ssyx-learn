@@ -1,7 +1,7 @@
 package com.atguigu.ssyx.service.impl;
 
-import com.atguigu.ssyx.entity.Region;
 import com.atguigu.ssyx.mapper.RegionMapper;
+import com.atguigu.ssyx.model.sys.Region;
 import com.atguigu.ssyx.service.RegionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
