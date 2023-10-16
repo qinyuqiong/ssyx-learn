@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -62,11 +60,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         List<Permission> permissionList = baseMapper.selectList(null);
         List<Permission> result = new ArrayList<>(permissionList.size());
         for (Permission permission : permissionList) {
-            if (permissionIds.contains(permission.getId())) {
-                permission.setSelect(true);
-            } else {
-                permission.setSelect(false);
-            }
+            permission.setSelect(permissionIds.contains(permission.getId()));
             result.add(permission);
         }
         return result;
