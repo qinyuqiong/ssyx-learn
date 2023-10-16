@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 17273
@@ -23,6 +24,21 @@ public class PermissionController {
 
     @Autowired
     private PermissionService permissionService;
+
+    @ApiOperation("分配权限")
+    @PostMapping("/doAssign")
+    public Result<Void> doAssign(@RequestParam Long roleId, @RequestParam List<Long> permissionId) {
+        permissionService.saveParamPermission(roleId, permissionId);
+        return Result.ok(null);
+    }
+
+    @ApiOperation("获取角色菜单")
+    @GetMapping("/toAssign/{roleId}")
+    public Result<List<Permission>> toAssign(@PathVariable Long roleId) {
+        List<Permission> permissionByRoleId = permissionService.findPermissionByRoleId(roleId);
+        List<Permission> permissions = PermissionHelper.buildPermission(permissionByRoleId);
+        return Result.ok(permissions);
+    }
 
     @ApiOperation("查询所有菜单")
     @GetMapping
