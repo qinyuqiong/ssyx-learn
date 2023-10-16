@@ -23,8 +23,12 @@ public class RegionWareServiceImpl extends ServiceImpl<RegionWareMapper, RegionW
     @Override
     public Page<RegionWare> selectPage(Page<RegionWare> objectPage, RegionWareQueryVo regionWareQueryVo) {
         String keyWord = regionWareQueryVo.getKeyword();
+        if (keyWord.isEmpty()) {
+            Page<RegionWare> regionWarePage = baseMapper.selectPage(objectPage, null);
+            return regionWarePage;
+        }
         LambdaQueryWrapper<RegionWare> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.like(RegionWare::getRegionName,keyWord).or().like(RegionWare::getWareName,keyWord);
+        queryWrapper.like(RegionWare::getRegionName, keyWord).or().like(RegionWare::getWareName, keyWord);
         Page<RegionWare> regionWarePage = baseMapper.selectPage(objectPage, queryWrapper);
         return regionWarePage;
     }
