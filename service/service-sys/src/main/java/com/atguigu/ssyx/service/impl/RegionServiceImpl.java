@@ -24,7 +24,6 @@ public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> impleme
     public List<Region> selectByName(String keyword) {
         LambdaQueryWrapper<Region> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(Region::getName, keyword);
-        List<Region> list = baseMapper.selectList(queryWrapper);
-        return list;
+        return baseMapper.selectList(queryWrapper);
     }
 }

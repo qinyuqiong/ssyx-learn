@@ -5,7 +5,6 @@ import com.atguigu.ssyx.common.result.Result;
 import com.atguigu.ssyx.model.sys.Ware;
 import com.atguigu.ssyx.service.WareService;
 import com.atguigu.ssyx.vo.product.WareQueryVo;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

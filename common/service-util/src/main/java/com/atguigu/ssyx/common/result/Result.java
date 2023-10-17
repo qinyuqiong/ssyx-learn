@@ -19,11 +19,13 @@ public class Result<T> {
     }
 
     /**
-     * @param data
-     * @param code
-     * @param message
-     * @param <T>
-     * @return
+     * 建造者
+     *
+     * @param data    数据
+     * @param code    代码
+     * @param message 消息
+     * @param <T>     跑函数
+     * @return 返回值
      */
     public static <T> Result<T> build(T data, Integer code, String message) {
         Result<T> result = new Result<>();

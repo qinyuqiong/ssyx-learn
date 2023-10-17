@@ -31,8 +31,7 @@ public class RegionWareServiceImpl extends ServiceImpl<RegionWareMapper, RegionW
         if (!StringUtils.isEmpty(keyWord)) {
             queryWrapper.like(RegionWare::getRegionName, keyWord).or().like(RegionWare::getWareName, keyWord);
         }
-        IPage<RegionWare> regionWarePage = baseMapper.selectPage(objectPage, queryWrapper);
-        return regionWarePage;
+        return baseMapper.selectPage(objectPage, queryWrapper);
     }
 
     @Override

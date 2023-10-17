@@ -23,11 +23,7 @@ public class WareServiceImpl extends ServiceImpl<WareMapper, Ware> implements Wa
 
     @Override
     public IPage<Ware> selectWare(Page<Ware> warePage, WareQueryVo wareQueryVo) {
-        LambdaQueryWrapper queryWrapper = new LambdaQueryWrapper<>();
-
-
-
-        IPage<Ware> selectPage = baseMapper.selectPage(warePage, queryWrapper);
-        return selectPage;
+        LambdaQueryWrapper<Ware> queryWrapper = new LambdaQueryWrapper<>();
+        return baseMapper.selectPage(warePage, queryWrapper);
     }
 }

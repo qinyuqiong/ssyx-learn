@@ -2,7 +2,6 @@ package com.atguigu.ssyx.controller;
 
 
 import com.atguigu.ssyx.common.result.Result;
-import com.atguigu.ssyx.model.acl.RolePermission;
 import com.atguigu.ssyx.model.sys.RegionWare;
 import com.atguigu.ssyx.service.RegionWareService;
 import com.atguigu.ssyx.vo.sys.RegionWareQueryVo;
@@ -34,7 +33,7 @@ public class RegionWareController {
     @GetMapping("/{page}/{limit}")
     public Result<IPage<RegionWare>> index(@ApiParam(name = "page", value = "当前页码", required = true) @PathVariable Long page,
                                            @ApiParam(name = "limit", value = "每页记录数", required = true) @PathVariable Long limit,
-                                           @ApiParam(name = "regionWareVo", value = "查询对象", required = false) RegionWareQueryVo regionWareQueryVo) {
+                                           @ApiParam(name = "regionWareVo", value = "查询对象") RegionWareQueryVo regionWareQueryVo) {
         Page<RegionWare> objectPage = new Page<>(page, limit);
         IPage<RegionWare> regionWarePage = regionWareService.selectPage(objectPage, regionWareQueryVo);
         return Result.ok(regionWarePage);
