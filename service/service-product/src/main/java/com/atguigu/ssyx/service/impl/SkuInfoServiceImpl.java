@@ -29,9 +29,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         Long categoryId = skuInfoQueryVo.getCategoryId();
 
         LambdaQueryWrapper<SkuInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.like(StringUtils.isEmpty(skuType), SkuInfo::getSkuType, skuType);
-        queryWrapper.like(StringUtils.isEmpty(keyword), SkuInfo::getSkuName, keyword);
-        queryWrapper.eq(StringUtils.isEmpty(categoryId), SkuInfo::getCategoryId, categoryId);
+        queryWrapper.like(!StringUtils.isEmpty(skuType), SkuInfo::getSkuType, skuType);
+        queryWrapper.like(!StringUtils.isEmpty(keyword), SkuInfo::getSkuName, keyword);
+        queryWrapper.eq(!StringUtils.isEmpty(categoryId), SkuInfo::getCategoryId, categoryId);
         return baseMapper.selectPage(pageParam, queryWrapper);
     }
 }
