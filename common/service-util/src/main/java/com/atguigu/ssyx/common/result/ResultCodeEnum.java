@@ -58,12 +58,12 @@ public enum ResultCodeEnum {
     /**
      * 描述
      */
-    private String message;
+    private final String message;
 
     /**
      * 操作
      */
-    private ResultCodeEnum(Integer code, String message) {
+    ResultCodeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
