@@ -34,7 +34,7 @@ public class SkuInfoController {
             @PathVariable Long page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable Long limit,
-            @ApiParam(name = "skuInfoQueryVo", value = "查询对象", required = false)
+            @ApiParam(name = "skuInfoQueryVo", value = "查询对象")
             SkuInfoQueryVo skuInfoQueryVo) {
         Page<SkuInfo> pageParam = new Page<>(page, limit);
         IPage<SkuInfo> pageModel = skuInfoService.selectPage(pageParam, skuInfoQueryVo);

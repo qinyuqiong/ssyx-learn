@@ -24,7 +24,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements At
     public List<Attr> findByAttrGroupId(Long attrGroupId) {
         LambdaQueryWrapper<Attr> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Attr::getAttrGroupId,attrGroupId);
-        List<Attr> attrList = baseMapper.selectList(wrapper);
-        return attrList;
+        return baseMapper.selectList(wrapper);
     }
 }

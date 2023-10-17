@@ -37,7 +37,7 @@ public class AttrGroupController {
             @PathVariable Long page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable Long limit,
-            @ApiParam(name = "attrGroupQueryVo", value = "查询对象", required = false)
+            @ApiParam(name = "attrGroupQueryVo", value = "查询对象")
             AttrGroupQueryVo attrGroupQueryVo) {
         Page<AttrGroup> pageParam = new Page<>(page, limit);
         IPage<AttrGroup> pageModel = attrGroupService.selectPage(pageParam, attrGroupQueryVo);
