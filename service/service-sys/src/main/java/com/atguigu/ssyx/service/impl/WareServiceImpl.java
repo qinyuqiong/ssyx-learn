@@ -3,6 +3,10 @@ package com.atguigu.ssyx.service.impl;
 import com.atguigu.ssyx.mapper.WareMapper;
 import com.atguigu.ssyx.model.sys.Ware;
 import com.atguigu.ssyx.service.WareService;
+import com.atguigu.ssyx.vo.product.WareQueryVo;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +21,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class WareServiceImpl extends ServiceImpl<WareMapper, Ware> implements WareService {
 
+    @Override
+    public IPage<Ware> selectWare(Page<Ware> warePage, WareQueryVo wareQueryVo) {
+        LambdaQueryWrapper queryWrapper = new LambdaQueryWrapper<>();
+
+
+
+        IPage<Ware> selectPage = baseMapper.selectPage(warePage, queryWrapper);
+        return selectPage;
+    }
 }

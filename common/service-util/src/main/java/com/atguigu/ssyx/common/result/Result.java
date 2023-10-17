@@ -19,6 +19,23 @@ public class Result<T> {
     }
 
     /**
+     * @param data
+     * @param code
+     * @param message
+     * @param <T>
+     * @return
+     */
+    public static <T> Result<T> build(T data, Integer code, String message) {
+        Result<T> result = new Result<>();
+        if (data != null) {
+            result.setData(data);
+        }
+        result.setCode(code);
+        result.setMsg(message);
+        return result;
+    }
+
+    /**
      * 创建
      *
      * @param data           数据
