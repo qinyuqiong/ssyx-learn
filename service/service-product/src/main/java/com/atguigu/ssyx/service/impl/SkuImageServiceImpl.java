@@ -1,7 +1,6 @@
 package com.atguigu.ssyx.service.impl;
 
 import com.atguigu.ssyx.mapper.SkuImageMapper;
-import com.atguigu.ssyx.model.product.SkuAttrValue;
 import com.atguigu.ssyx.model.product.SkuImage;
 import com.atguigu.ssyx.service.SkuImageService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

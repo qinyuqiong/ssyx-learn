@@ -3,7 +3,6 @@ package com.atguigu.ssyx.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
-import com.aliyun.oss.model.PutObjectResult;
 import com.atguigu.ssyx.service.FileUploadService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,9 +53,8 @@ public class FileUploadServiceImpl implements FileUploadService {
             ossClient.shutdown();
             //上传之后文件路径
             // https://ssyx-atguigu.oss-cn-beijing.aliyuncs.com/01.jpg
-            String url = "https://" + bucketName + "." + endpoint + "/" + newFileName;
             //返回
-            return url;
+            return "https://" + bucketName + "." + endpoint + "/" + newFileName;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

@@ -24,7 +24,7 @@ public class FileUploadController {
 
     //文件上传
     @PostMapping("fileUpload")
-    public Result<String> fileUpload(MultipartFile file) throws Exception {
+    public Result<String> fileUpload(MultipartFile file) {
         return Result.ok(fileUploadService.fileUpload(file));
     }
 }
