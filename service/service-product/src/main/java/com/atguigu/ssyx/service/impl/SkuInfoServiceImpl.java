@@ -59,17 +59,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         BeanUtils.copyProperties(skuInfoVo, skuInfo);
         baseMapper.insert(skuInfo);
 
-        List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
-        skuPosterList.forEach(skuPoster -> skuPoster.setSkuId(skuInfo.getId()));
-        skuPosterService.saveBatch(skuPosterList);
-
-        List<SkuImage> skuImagesList = skuInfoVo.getSkuImagesList();
-        skuImagesList.forEach(skuImage -> skuImage.setSkuId(skuInfo.getId()));
-        skuImageService.saveBatch(skuImagesList);
-
-        List<SkuAttrValue> skuAttrValueList = skuInfoVo.getSkuAttrValueList();
-        skuAttrValueList.forEach(skuAttrValue -> skuAttrValue.setSkuId(skuInfo.getId()));
-        skuAttrValueService.saveBatch(skuAttrValueList);
+        saveSkuInfo(skuInfoVo, skuInfo);
 
     }
 
@@ -87,5 +77,32 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         skuInfoVo.setSkuAttrValueList(skuAttrValues);
 
         return skuInfoVo;
+    }
+
+    @Override
+    public void updateSkuInfoById(SkuInfoVo skuInfoVo) {
+        SkuInfo skuInfo = new SkuInfo();
+        BeanUtils.copyProperties(skuInfoVo, skuInfo);
+        baseMapper.updateById(skuInfo);
+
+        skuImageService.removeBySkuId(skuInfo.getId());
+        skuPosterService.removeBySkuId(skuInfo.getId());
+        skuAttrValueService.removeBySkuId(skuInfo.getId());
+
+        saveSkuInfo(skuInfoVo);
+    }
+
+    private void saveSkuInfo(SkuInfoVo skuInfoVo, SkuInfo skuInfo) {
+        List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
+        skuPosterList.forEach(skuPoster -> skuPoster.setSkuId(skuInfo.getId()));
+        skuPosterService.saveBatch(skuPosterList);
+
+        List<SkuImage> skuImagesList = skuInfoVo.getSkuImagesList();
+        skuImagesList.forEach(skuImage -> skuImage.setSkuId(skuInfo.getId()));
+        skuImageService.saveBatch(skuImagesList);
+
+        List<SkuAttrValue> skuAttrValueList = skuInfoVo.getSkuAttrValueList();
+        skuAttrValueList.forEach(skuAttrValue -> skuAttrValue.setSkuId(skuInfo.getId()));
+        skuAttrValueService.saveBatch(skuAttrValueList);
     }
 }

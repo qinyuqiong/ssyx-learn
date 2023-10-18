@@ -23,4 +23,6 @@ public interface SkuInfoService extends IService<SkuInfo> {
     void saveSkuInfo(SkuInfoVo skuInfoVo);
 
     SkuInfoVo getSkuInfoById(Long id);
+
+    void updateSkuInfoById(SkuInfoVo skuInfoVo);
 }

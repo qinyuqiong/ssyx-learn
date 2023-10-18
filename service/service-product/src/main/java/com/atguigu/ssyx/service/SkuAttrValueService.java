@@ -17,4 +17,6 @@ import java.util.List;
 public interface SkuAttrValueService extends IService<SkuAttrValue> {
 
     List<SkuAttrValue> selectBySkuId(Long skuId);
+
+    void removeBySkuId(Long skuId);
 }

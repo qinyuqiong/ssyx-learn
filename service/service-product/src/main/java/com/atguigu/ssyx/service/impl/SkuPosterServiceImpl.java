@@ -1,6 +1,7 @@
 package com.atguigu.ssyx.service.impl;
 
 import com.atguigu.ssyx.mapper.SkuPosterMapper;
+import com.atguigu.ssyx.model.product.SkuAttrValue;
 import com.atguigu.ssyx.model.product.SkuPoster;
 import com.atguigu.ssyx.service.SkuPosterService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -25,6 +26,11 @@ public class SkuPosterServiceImpl extends ServiceImpl<SkuPosterMapper, SkuPoster
         LambdaQueryWrapper<SkuPoster> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SkuPoster::getSkuId, skuId);
         return baseMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public void removeBySkuId(Long skuId) {
+        baseMapper.delete(new LambdaQueryWrapper<SkuPoster>().eq(SkuPoster::getSkuId, skuId));
     }
 }
 

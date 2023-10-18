@@ -55,5 +55,12 @@ public class SkuInfoController {
         SkuInfoVo skuInfoVo = skuInfoService.getSkuInfoById(id);
         return Result.ok(skuInfoVo);
     }
+
+    @ApiOperation("更新")
+    @PutMapping("/update")
+    public Result<Void> updateById(@RequestBody SkuInfoVo skuInfoVo){
+        skuInfoService.updateSkuInfoById(skuInfoVo);
+        return Result.ok(null);
+    }
 }
 

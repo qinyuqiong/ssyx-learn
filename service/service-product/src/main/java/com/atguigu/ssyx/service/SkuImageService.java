@@ -17,4 +17,6 @@ import java.util.List;
 public interface SkuImageService extends IService<SkuImage> {
 
     List<SkuImage> selectBySkuId(Long id);
+
+    void removeBySkuId(Long skuId);
 }
