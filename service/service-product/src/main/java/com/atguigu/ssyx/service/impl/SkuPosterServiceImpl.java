@@ -1,7 +1,6 @@
 package com.atguigu.ssyx.service.impl;
 
 import com.atguigu.ssyx.mapper.SkuPosterMapper;
-import com.atguigu.ssyx.model.product.SkuAttrValue;
 import com.atguigu.ssyx.model.product.SkuPoster;
 import com.atguigu.ssyx.service.SkuPosterService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
