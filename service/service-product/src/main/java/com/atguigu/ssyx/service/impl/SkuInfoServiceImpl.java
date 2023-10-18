@@ -73,4 +73,20 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         skuAttrValueService.saveBatch(skuAttrValueList);
 
     }
+
+    @Override
+    public SkuInfoVo getSkuInfoById(Long id) {
+        SkuInfo skuInfo = baseMapper.selectById(id);
+        List<SkuImage> skuImages = skuImageService.selectBySkuId(id);
+        List<SkuPoster> skuPosters = skuPosterService.selectBySkuId(id);
+        List<SkuAttrValue> skuAttrValues = skuAttrValueService.selectBySkuId(id);
+
+        SkuInfoVo skuInfoVo = new SkuInfoVo();
+        BeanUtils.copyProperties(skuInfo, skuInfoVo);
+        skuInfoVo.setSkuImagesList(skuImages);
+        skuInfoVo.setSkuPosterList(skuPosters);
+        skuInfoVo.setSkuAttrValueList(skuAttrValues);
+
+        return skuInfoVo;
+    }
 }

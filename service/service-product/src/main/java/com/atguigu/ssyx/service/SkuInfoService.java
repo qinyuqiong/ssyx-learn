@@ -21,4 +21,6 @@ public interface SkuInfoService extends IService<SkuInfo> {
     IPage<SkuInfo> selectPage(Page<SkuInfo> pageParam, SkuInfoQueryVo skuInfoQueryVo);
 
     void saveSkuInfo(SkuInfoVo skuInfoVo);
+
+    SkuInfoVo getSkuInfoById(Long id);
 }
