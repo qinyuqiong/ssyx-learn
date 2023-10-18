@@ -5,6 +5,7 @@ import com.atguigu.ssyx.common.result.Result;
 import com.atguigu.ssyx.model.product.SkuInfo;
 import com.atguigu.ssyx.service.SkuInfoService;
 import com.atguigu.ssyx.vo.product.SkuInfoQueryVo;
+import com.atguigu.ssyx.vo.product.SkuInfoVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
@@ -39,6 +40,13 @@ public class SkuInfoController {
         Page<SkuInfo> pageParam = new Page<>(page, limit);
         IPage<SkuInfo> pageModel = skuInfoService.selectPage(pageParam, skuInfoQueryVo);
         return Result.ok(pageModel);
+    }
+
+    @ApiOperation(value = "保存sku信息")
+    @PostMapping("save")
+    public Result<Void> save(@RequestBody SkuInfoVo skuInfoVo) {
+        skuInfoService.saveSkuInfo(skuInfoVo);
+        return Result.ok(null);
     }
 }
 

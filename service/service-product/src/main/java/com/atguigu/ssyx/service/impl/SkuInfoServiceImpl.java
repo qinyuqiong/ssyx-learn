@@ -1,15 +1,27 @@
 package com.atguigu.ssyx.service.impl;
 
 import com.atguigu.ssyx.mapper.SkuInfoMapper;
+import com.atguigu.ssyx.model.product.SkuAttrValue;
+import com.atguigu.ssyx.model.product.SkuImage;
 import com.atguigu.ssyx.model.product.SkuInfo;
+import com.atguigu.ssyx.model.product.SkuPoster;
+import com.atguigu.ssyx.service.SkuAttrValueService;
+import com.atguigu.ssyx.service.SkuImageService;
 import com.atguigu.ssyx.service.SkuInfoService;
+import com.atguigu.ssyx.service.SkuPosterService;
 import com.atguigu.ssyx.vo.product.SkuInfoQueryVo;
+import com.atguigu.ssyx.vo.product.SkuInfoVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -22,6 +34,13 @@ import org.springframework.util.StringUtils;
 @Service
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> implements SkuInfoService {
 
+    @Autowired
+    private SkuImageService skuImageService;
+    @Autowired
+    private SkuPosterService skuPosterService;
+    @Autowired
+    private SkuAttrValueService skuAttrValueService;
+
     @Override
     public IPage<SkuInfo> selectPage(Page<SkuInfo> pageParam, SkuInfoQueryVo skuInfoQueryVo) {
         String skuType = skuInfoQueryVo.getSkuType();
@@ -33,5 +52,25 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         queryWrapper.like(!StringUtils.isEmpty(keyword), SkuInfo::getSkuName, keyword);
         queryWrapper.eq(!StringUtils.isEmpty(categoryId), SkuInfo::getCategoryId, categoryId);
         return baseMapper.selectPage(pageParam, queryWrapper);
+    }
+
+    @Override
+    public void saveSkuInfo(SkuInfoVo skuInfoVo) {
+        SkuInfo skuInfo = new SkuInfo();
+        BeanUtils.copyProperties(skuInfoVo, skuInfo);
+        baseMapper.insert(skuInfo);
+
+        List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
+        skuPosterList.forEach(skuPoster -> skuPoster.setSkuId(skuInfo.getId()));
+        skuPosterService.saveBatch(skuPosterList);
+
+        List<SkuImage> skuImagesList = skuInfoVo.getSkuImagesList();
+        skuImagesList.forEach(skuImage -> skuImage.setSkuId(skuInfo.getId()));
+        skuImageService.saveBatch(skuImagesList);
+
+        List<SkuAttrValue> skuAttrValueList = skuInfoVo.getSkuAttrValueList();
+        skuAttrValueList.forEach(skuAttrValue -> skuAttrValue.setSkuId(skuInfo.getId()));
+        skuAttrValueService.saveBatch(skuAttrValueList);
+
     }
 }
