@@ -7,7 +7,6 @@ import com.atguigu.ssyx.model.product.SkuInfo;
 import com.atguigu.ssyx.model.search.SkuEs;
 import com.atguigu.ssyx.search.repository.SkuRepository;
 import com.atguigu.ssyx.search.service.SkuApiService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
