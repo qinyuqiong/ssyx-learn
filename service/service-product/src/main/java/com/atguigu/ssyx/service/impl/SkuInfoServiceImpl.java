@@ -89,7 +89,44 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         skuPosterService.removeBySkuId(skuInfo.getId());
         skuAttrValueService.removeBySkuId(skuInfo.getId());
 
-        saveSkuInfo(skuInfoVo);
+        saveSkuInfo(skuInfoVo, skuInfo);
+    }
+
+    @Override
+    public void removeSkuInfoById(Long id) {
+        skuImageService.removeBySkuId(id);
+        skuPosterService.removeBySkuId(id);
+        skuAttrValueService.removeBySkuId(id);
+        baseMapper.selectById(id);
+    }
+
+    @Override
+    public void removeSkuInfoByIds(List<Long> ids) {
+        skuImageService.removeBySkuIds(ids);
+        skuPosterService.removeBySkuIds(ids);
+        skuAttrValueService.removeBySkuIds(ids);
+        baseMapper.deleteBatchIds(ids);
+    }
+
+    @Override
+    public void updateNewPerson(Long id, Integer status) {
+        SkuInfo skuInfo = baseMapper.selectById(id);
+        skuInfo.setIsNewPerson(status);
+        baseMapper.updateById(skuInfo);
+    }
+
+    @Override
+    public void updateCheck(Long id, Integer status) {
+        SkuInfo skuInfo = baseMapper.selectById(id);
+        skuInfo.setCheckStatus(status);
+        baseMapper.updateById(skuInfo);
+    }
+
+    @Override
+    public void updatePublish(Long id, Integer status) {
+        SkuInfo skuInfo = baseMapper.selectById(id);
+        skuInfo.setPublishStatus(status);
+        baseMapper.updateById(skuInfo);
     }
 
     private void saveSkuInfo(SkuInfoVo skuInfoVo, SkuInfo skuInfo) {

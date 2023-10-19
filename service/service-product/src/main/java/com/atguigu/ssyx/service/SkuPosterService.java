@@ -19,4 +19,6 @@ public interface SkuPosterService extends IService<SkuPoster> {
     List<SkuPoster> selectBySkuId(Long skuId);
 
     void removeBySkuId(Long skuId);
+
+    void removeBySkuIds(List<Long> skuIds);
 }

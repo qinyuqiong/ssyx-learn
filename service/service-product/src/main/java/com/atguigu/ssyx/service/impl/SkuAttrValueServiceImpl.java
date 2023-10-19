@@ -31,4 +31,9 @@ public class SkuAttrValueServiceImpl extends ServiceImpl<SkuAttrValueMapper, Sku
     public void removeBySkuId(Long skuId) {
         baseMapper.delete(new LambdaQueryWrapper<SkuAttrValue>().eq(SkuAttrValue::getSkuId, skuId));
     }
+
+    @Override
+    public void removeBySkuIds(List<Long> skuIds) {
+        baseMapper.delete(new LambdaQueryWrapper<SkuAttrValue>().eq(SkuAttrValue::getSkuId, skuIds));
+    }
 }

@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * sku信息 服务类
@@ -25,4 +27,14 @@ public interface SkuInfoService extends IService<SkuInfo> {
     SkuInfoVo getSkuInfoById(Long id);
 
     void updateSkuInfoById(SkuInfoVo skuInfoVo);
+
+    void removeSkuInfoById(Long id);
+
+    void removeSkuInfoByIds(List<Long> ids);
+
+    void updateNewPerson(Long id, Integer status);
+
+    void updateCheck(Long id, Integer status);
+
+    void updatePublish(Long id, Integer status);
 }

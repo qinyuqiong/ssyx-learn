@@ -19,4 +19,6 @@ public interface SkuAttrValueService extends IService<SkuAttrValue> {
     List<SkuAttrValue> selectBySkuId(Long skuId);
 
     void removeBySkuId(Long skuId);
+
+    void removeBySkuIds(List<Long> skuIds);
 }

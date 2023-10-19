@@ -1,6 +1,7 @@
 package com.atguigu.ssyx.service.impl;
 
 import com.atguigu.ssyx.mapper.SkuImageMapper;
+import com.atguigu.ssyx.model.product.SkuAttrValue;
 import com.atguigu.ssyx.model.product.SkuImage;
 import com.atguigu.ssyx.service.SkuImageService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -30,6 +31,11 @@ public class SkuImageServiceImpl extends ServiceImpl<SkuImageMapper, SkuImage> i
     @Override
     public void removeBySkuId(Long skuId) {
         baseMapper.delete(new LambdaQueryWrapper<SkuImage>().eq(SkuImage::getSkuId, skuId));
+    }
+
+    @Override
+    public void removeBySkuIds(List<Long> skuIds) {
+        baseMapper.delete(new LambdaQueryWrapper<SkuImage>().eq(SkuImage::getSkuId, skuIds));
     }
 }
 
