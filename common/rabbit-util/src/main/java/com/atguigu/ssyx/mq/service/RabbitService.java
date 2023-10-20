@@ -1,4 +1,4 @@
-package com.atguigu.ssyx.common.service;
+package com.atguigu.ssyx.mq.service;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RabbitService {
      * @param message    消息
      * @return 是否成功
      */
-    public boolean sendMessage(String exchange, String routingKey, String message) {
+    public boolean sendMessage(String exchange, String routingKey, Object message) {
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
         return true;
     }
