@@ -29,6 +29,7 @@ public class SkuReceiver {
             exchange = @Exchange(value = MqConst.EXCHANGE_GOODS_DIRECT),
             key = {MqConst.ROUTING_GOODS_UPPER}))
     public void upperSku(Long id, Message message, Channel channel) throws IOException {
+        System.out.println("upperSku" + id);
         if (id != null) {
             skuApiService.upperSku(id);
         }
@@ -40,6 +41,7 @@ public class SkuReceiver {
             exchange = @Exchange(value = MqConst.EXCHANGE_GOODS_DIRECT),
             key = {MqConst.ROUTING_GOODS_LOWER}))
     public void lowerSku(Long id, Message message, Channel channel) throws IOException {
+        System.out.println("lowerSku" + id);
         if (id != null) {
             skuApiService.lowerSku(id);
         }
