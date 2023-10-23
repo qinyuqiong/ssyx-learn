@@ -1,8 +1,8 @@
 package com.atguigu.ssyx.activity.service.impl;
 
-import com.atguigu.ssyx.activity.entity.CouponInfo;
 import com.atguigu.ssyx.activity.mapper.CouponInfoMapper;
 import com.atguigu.ssyx.activity.service.CouponInfoService;
+import com.atguigu.ssyx.model.activity.CouponInfo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

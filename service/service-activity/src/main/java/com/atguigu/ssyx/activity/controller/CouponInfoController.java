@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/activity/coupon-info")
+@RequestMapping("/admin/activity/couponInfo")
 public class CouponInfoController {
 
 }

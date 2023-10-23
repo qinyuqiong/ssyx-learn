@@ -37,4 +37,8 @@ public interface SkuInfoService extends IService<SkuInfo> {
     void updateCheck(Long id, Integer status);
 
     void updatePublish(Long id, Integer status);
+
+    List<SkuInfo> findSkuInfoList(List<Long> skuIdList);
+
+    List<SkuInfo> findSkuInfoByKeyword(String keyword);
 }

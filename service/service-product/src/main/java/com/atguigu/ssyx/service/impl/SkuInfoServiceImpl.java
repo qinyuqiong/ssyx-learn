@@ -139,6 +139,16 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
 
     }
 
+    @Override
+    public List<SkuInfo> findSkuInfoList(List<Long> skuIdList) {
+        return baseMapper.selectBatchIds(skuIdList);
+    }
+
+    @Override
+    public List<SkuInfo> findSkuInfoByKeyword(String keyword) {
+        return baseMapper.selectList(new LambdaQueryWrapper<SkuInfo>().like(SkuInfo::getSkuName, keyword));
+    }
+
     private void saveSkuInfo(SkuInfoVo skuInfoVo, SkuInfo skuInfo) {
         List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
         skuPosterList.forEach(skuPoster -> skuPoster.setSkuId(skuInfo.getId()));
