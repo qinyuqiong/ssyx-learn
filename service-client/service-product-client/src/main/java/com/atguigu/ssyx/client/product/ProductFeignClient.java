@@ -23,8 +23,11 @@ public interface ProductFeignClient {
     SkuInfo getSkuInfo(@PathVariable("skuId") Long skuId);
 
     @PostMapping("/api/product/inner/findSkuInfoList")
-    List<SkuInfo> findSkuInfoList(List<Long> skuIdList);
+    List<SkuInfo> findSkuInfoList(@RequestBody List<Long> skuIdList);
 
     @GetMapping("/api/product/inner/findSkuInfoByKeyword/{keyword}")
     List<SkuInfo> findSkuInfoByKeyword(@PathVariable String keyword);
+
+    @PostMapping("/api/product/inner/findCategoryList")
+    List<Category> findCategoryList(@RequestBody List<Long> categoryIdList);
 }

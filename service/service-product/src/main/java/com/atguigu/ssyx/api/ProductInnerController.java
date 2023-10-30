@@ -42,4 +42,9 @@ public class ProductInnerController {
     public List<SkuInfo> findSkuInfoByKeyword(@PathVariable String keyword) {
         return skuInfoService.findSkuInfoByKeyword(keyword);
     }
+
+    @PostMapping("/findCategoryList")
+    List<Category> findCategoryList(@RequestBody List<Long> categoryIdList) {
+        return categoryService.listByIds(categoryIdList);
+    }
 }

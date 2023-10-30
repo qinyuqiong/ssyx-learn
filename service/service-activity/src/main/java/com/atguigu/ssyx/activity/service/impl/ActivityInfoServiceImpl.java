@@ -91,6 +91,9 @@ public class ActivityInfoServiceImpl extends ServiceImpl<ActivityInfoMapper, Act
     @Override
     public List<SkuInfo> findSkuInfoByKeyword(String keyword) {
         List<SkuInfo> skuInfoList = productFeignClient.findSkuInfoByKeyword(keyword);
+        if (skuInfoList.isEmpty()){
+            return skuInfoList;
+        }
         List<Long> skuIds = skuInfoList.stream().map(SkuInfo::getId).collect(Collectors.toList());
         List<Long> existSkuIds = baseMapper.selectSkuIdListExist(skuIds);
         List<SkuInfo> result = new ArrayList<>();
