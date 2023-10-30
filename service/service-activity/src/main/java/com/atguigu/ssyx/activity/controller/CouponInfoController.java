@@ -23,7 +23,7 @@ import java.util.Map;
  * @author atguigu
  * @since 2023-10-23
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping("/admin/activity/couponInfo")
 public class CouponInfoController {
@@ -76,8 +76,15 @@ public class CouponInfoController {
 
     @ApiOperation("根据id查规则")
     @GetMapping("/findCouponRuleList/{id}")
-    public Result<Map<String, Object>> findCouponRuleList(@PathVariable Long id){
+    public Result<Map<String, Object>> findCouponRuleList(@PathVariable Long id) {
         return Result.ok(couponInfoService.findCouponRuleList(id));
+    }
+
+    @ApiOperation("保存优惠券规则")
+    @PostMapping("/saveCouponRule")
+    public Result<Void> saveCouponRule(@RequestBody CouponRuleVo couponRuleVo) {
+        couponInfoService.saveCouponRule(couponRuleVo);
+        return Result.ok(null);
     }
 }
 

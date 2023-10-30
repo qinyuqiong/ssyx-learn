@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2023/10/18
  */
 @Api(tags = "文件上传接口")
-@CrossOrigin
+
 @RestController
 @RequestMapping("/admin/product")
 public class FileUploadController {

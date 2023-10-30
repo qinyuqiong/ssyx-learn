@@ -19,7 +19,7 @@ import java.util.List;
  * @author atguigu
  * @since 2023-10-17
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping("/admin/product/attr")
 public class AttrController {

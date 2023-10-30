@@ -10,7 +10,7 @@ import java.util.Map;
  * @author 17273
  * @date 2023/7/14
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping("admin/acl/index")
 public class IndexController {

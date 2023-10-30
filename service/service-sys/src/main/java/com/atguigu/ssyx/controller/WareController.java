@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Api(tags = "仓库管理")
 @RestController
-@CrossOrigin
+
 @RequestMapping("/admin/sys/ware")
 public class WareController {
 

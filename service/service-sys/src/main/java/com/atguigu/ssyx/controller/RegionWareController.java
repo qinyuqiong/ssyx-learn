@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "地区仓库管理")
 @RestController
-@CrossOrigin
+
 @RequestMapping("/admin/sys/regionWare")
 public class RegionWareController {
     @Autowired

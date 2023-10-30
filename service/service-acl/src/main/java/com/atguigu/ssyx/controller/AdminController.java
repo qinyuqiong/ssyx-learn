@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "用户管理")
 @RestController
-@CrossOrigin
+
 @RequestMapping("admin/acl/user")
 public class AdminController {
 

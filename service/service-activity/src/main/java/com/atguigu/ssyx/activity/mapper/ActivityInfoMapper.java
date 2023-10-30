@@ -18,5 +18,5 @@ import java.util.List;
 @Repository
 public interface ActivityInfoMapper extends BaseMapper<ActivityInfo> {
 
-    List<Long> selectSkuIdListExist(@Param("skuIdList") List<Long> skuIds);
+    List<Long> selectSkuIdListExist(@Param("skuIdList") List<Long> skuIdList);
 }

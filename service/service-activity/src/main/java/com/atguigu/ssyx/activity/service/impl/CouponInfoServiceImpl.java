@@ -5,11 +5,11 @@ import com.atguigu.ssyx.activity.mapper.CouponRangeMapper;
 import com.atguigu.ssyx.activity.service.CouponInfoService;
 import com.atguigu.ssyx.client.product.ProductFeignClient;
 import com.atguigu.ssyx.enums.CouponRangeType;
-import com.atguigu.ssyx.enums.CouponType;
 import com.atguigu.ssyx.model.activity.CouponInfo;
 import com.atguigu.ssyx.model.activity.CouponRange;
 import com.atguigu.ssyx.model.product.Category;
 import com.atguigu.ssyx.model.product.SkuInfo;
+import com.atguigu.ssyx.vo.activity.CouponRuleVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -70,6 +70,26 @@ public class CouponInfoServiceImpl extends ServiceImpl<CouponInfoMapper, CouponI
             }
         }
         return resultMap;
+    }
+
+    @Override
+    public void saveCouponRule(CouponRuleVo couponRuleVo) {
+        couponRangeMapper.delete(new LambdaQueryWrapper<CouponRange>().eq(CouponRange::getCouponId, couponRuleVo.getCouponId()));
+        CouponInfo couponInfo = baseMapper.selectById(couponRuleVo.getCouponId());
+        couponInfo.setRangeType(couponRuleVo.getRangeType());
+        couponInfo.setConditionAmount(couponRuleVo.getConditionAmount());
+        couponInfo.setAmount(couponRuleVo.getAmount());
+        couponInfo.setConditionAmount(couponRuleVo.getConditionAmount());
+        couponInfo.setRangeDesc(couponRuleVo.getRangeDesc());
+
+        baseMapper.updateById(couponInfo);
+
+        List<CouponRange> couponRangeList = couponRuleVo.getCouponRangeList();
+        couponRangeList.forEach(couponRange -> {
+            couponRange.setCouponId(couponRuleVo.getCouponId());
+            couponRangeMapper.insert(couponRange);
+        });
+
     }
 
     private void mapperCouponType(CouponInfo couponInfo) {

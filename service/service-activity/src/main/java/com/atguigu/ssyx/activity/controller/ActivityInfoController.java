@@ -23,7 +23,7 @@ import java.util.Map;
  * @author atguigu
  * @since 2023-10-23
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping("/admin/activity/activityInfo")
 public class ActivityInfoController {
