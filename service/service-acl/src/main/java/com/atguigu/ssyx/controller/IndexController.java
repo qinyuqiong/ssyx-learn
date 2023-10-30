@@ -16,14 +16,14 @@ import java.util.Map;
 public class IndexController {
 
     @PostMapping("/login")
-    public Result login() {
+    public Result<Map<String, String>> login() {
         Map<String, String> map = new HashMap<>();
         map.put("token", "admin-token");
         return Result.ok(map);
     }
 
     @GetMapping("/info")
-    public Result info() {
+    public Result<Map<String, String>> info() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "atguigu");
         map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
@@ -31,7 +31,7 @@ public class IndexController {
     }
 
     @PostMapping("/logout")
-    public Result logout() {
+    public Result<Void> logout() {
         return Result.ok(null);
     }
 }
