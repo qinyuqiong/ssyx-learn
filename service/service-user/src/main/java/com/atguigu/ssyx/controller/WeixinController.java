@@ -1,6 +1,7 @@
 package com.atguigu.ssyx.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.atguigu.ssyx.common.auth.AuthContextHolder;
 import com.atguigu.ssyx.common.constant.RedisConst;
 import com.atguigu.ssyx.common.exception.SsyxException;
 import com.atguigu.ssyx.common.result.Result;
@@ -16,10 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,6 +78,17 @@ public class WeixinController {
         map.put("token", token);
         map.put("leaderAddressVo", leaderAddressVo);
         return Result.ok(map);
+    }
+
+    @ApiOperation("更新用户昵称与头像")
+    @PostMapping("/auth/updateUser")
+    public Result<Void> updateUser(@RequestBody User user) {
+        User user1 = userService.getById(AuthContextHolder.getUserId());
+        //将表情转成*号
+        user1.setNickName(user.getNickName().replaceAll("[ue000-uefff]", "*"));
+        user1.setPhotoUrl(user.getPhotoUrl());
+        userService.updateById(user1);
+        return Result.ok(null);
     }
 
     /**
