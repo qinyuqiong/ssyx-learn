@@ -6,8 +6,6 @@ import com.atguigu.ssyx.common.exception.SsyxException;
 import com.atguigu.ssyx.common.result.Result;
 import com.atguigu.ssyx.common.result.ResultCodeEnum;
 import com.atguigu.ssyx.common.utils.JwtHelper;
-import com.atguigu.ssyx.enums.UserType;
-import com.atguigu.ssyx.model.user.Leader;
 import com.atguigu.ssyx.model.user.User;
 import com.atguigu.ssyx.service.UserService;
 import com.atguigu.ssyx.utils.ConstantPropertiesUtil;
@@ -15,9 +13,9 @@ import com.atguigu.ssyx.utils.HttpClientUtils;
 import com.atguigu.ssyx.vo.user.LeaderAddressVo;
 import com.atguigu.ssyx.vo.user.UserLoginVo;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +48,9 @@ public class WeixinController {
         String result = obtainWechatTickets(code);
         JSONObject jsonObject = JSONObject.parseObject(result);
         String openid = jsonObject.getString("openid");
+        if (StringUtils.isEmpty(openid)) {
+            throw new SsyxException(ResultCodeEnum.FETCH_ACCESSTOKEN_FAILD);
+        }
         //String sessionKey = jsonObject.getString("session_key");
 
         User user = userService.getUserOpenId(openid);
@@ -93,7 +94,7 @@ public class WeixinController {
         StringBuffer url = new StringBuffer()
                 .append("https://api.weixin.qq.com/sns/jscode2session")
                 .append("?appid=%s")
-                .append("?secret=%s")
+                .append("&secret=%s")
                 .append("&js_code=%s")
                 .append("&grant_type=authorization_code");
         String tokenUrl = String.format(url.toString(), wxOpenAppId, wxOpenAppSecret, code);
