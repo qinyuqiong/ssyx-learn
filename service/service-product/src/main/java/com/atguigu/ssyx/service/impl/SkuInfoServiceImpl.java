@@ -152,6 +152,20 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         return baseMapper.selectList(new LambdaQueryWrapper<SkuInfo>().like(SkuInfo::getSkuName, keyword));
     }
 
+    @Override
+    public List<SkuInfo> findNewPersonList() {
+        //只要前3条
+        Page<SkuInfo> infoPage = new Page<>(1, 3);
+
+        LambdaQueryWrapper<SkuInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SkuInfo::getIsNewPerson, 1);
+        queryWrapper.eq(SkuInfo::getPublishStatus, 1);
+        //根据库存排序
+        queryWrapper.orderByDesc(SkuInfo::getStock);
+        Page<SkuInfo> infoPage1 = baseMapper.selectPage(infoPage, queryWrapper);
+        return infoPage1.getRecords();
+    }
+
     private void saveSkuInfo(SkuInfoVo skuInfoVo, SkuInfo skuInfo) {
         List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
         skuPosterList.forEach(skuPoster -> skuPoster.setSkuId(skuInfo.getId()));

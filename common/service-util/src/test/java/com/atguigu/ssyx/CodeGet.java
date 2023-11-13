@@ -19,7 +19,7 @@ public class CodeGet {
         // 2、全局配置
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\code\\java\\ssyx-learn\\service\\service-sys" + "/src/main/java");
+        gc.setOutputDir("D:\\code\\java\\ssyx-learn\\service\\service-activity" + "/src/main/java");
 
         gc.setServiceName("%sService");    //去掉Service接口的首字母I
         gc.setAuthor("atguigu");
@@ -28,17 +28,17 @@ public class CodeGet {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/shequ-sys?serverTimezone=GMT%2B8&useSSL=false");
+        dsc.setUrl("jdbc:mysql://139.155.159.21:3306/shequ-activity?serverTimezone=GMT%2B8&useSSL=false");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("1234");
+        dsc.setUsername("liaozesong");
+        dsc.setPassword("Lzslov123!");
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.atguigu");
-        pc.setModuleName("ssyx"); //模块名
+        pc.setParent("com.atguigu.ssyx");
+        pc.setModuleName("activity"); //模块名
         pc.setController("controller");
         pc.setService("service");
         pc.setMapper("mapper");
@@ -46,8 +46,22 @@ public class CodeGet {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-
-        strategy.setInclude("region", "ware", "region_ware");
+        //attr
+        //attr_group
+        //base_category_trademark
+        //category
+        //comment
+        //comment_replay
+        //mq_repeat_record
+        //region_ware
+        //sku_attr_value
+        //sku_detail
+        //sku_image
+        //sku_info
+        //sku_poster
+        //sku_stock_history
+        //ware
+        strategy.setInclude("activity_info", "activity_rule", "activity_sku", "coupon_info", "coupon_range", "coupon_use");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

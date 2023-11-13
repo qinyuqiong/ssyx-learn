@@ -8,8 +8,12 @@ import com.atguigu.ssyx.model.search.SkuEs;
 import com.atguigu.ssyx.search.repository.SkuRepository;
 import com.atguigu.ssyx.search.service.SkuApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -58,5 +62,12 @@ public class SkuApiServiceImpl implements SkuApiService {
     @Override
     public void lowerSku(Long skuId) {
         skuRepository.deleteById(skuId);
+    }
+
+    @Override
+    public List<SkuEs> findHotSkuList() {
+        Pageable pageRequest = PageRequest.of(0, 10);
+        Page<SkuEs> desc = skuRepository.findByOrderByHotScoreDesc(pageRequest);
+        return desc.getContent();
     }
 }

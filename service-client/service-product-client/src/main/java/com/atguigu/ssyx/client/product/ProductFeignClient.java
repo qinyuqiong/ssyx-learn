@@ -30,4 +30,11 @@ public interface ProductFeignClient {
 
     @PostMapping("/api/product/inner/findCategoryList")
     List<Category> findCategoryList(@RequestBody List<Long> categoryIdList);
+
+    @GetMapping("/api/product/inner/findAllCategoryList")
+    List<Category> findAllCategoryList();
+
+    @GetMapping("/api/product/inner/findNewPersonSkuInfoList")
+    List<SkuInfo> findNewPersonSkuInfoList();
+
 }

@@ -4,6 +4,7 @@ import com.atguigu.ssyx.model.product.Category;
 import com.atguigu.ssyx.model.product.SkuInfo;
 import com.atguigu.ssyx.service.CategoryService;
 import com.atguigu.ssyx.service.SkuInfoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +47,17 @@ public class ProductInnerController {
     @PostMapping("/findCategoryList")
     List<Category> findCategoryList(@RequestBody List<Long> categoryIdList) {
         return categoryService.listByIds(categoryIdList);
+    }
+
+    @ApiOperation(value = "获取分类信息")
+    @GetMapping("/findAllCategoryList")
+    List<Category> findAllCategoryList() {
+        return categoryService.list();
+    }
+
+    @ApiOperation(value = "获取新人专享")
+    @GetMapping("/findNewPersonSkuInfoList")
+    public List<SkuInfo> findNewPersonSkuInfoList() {
+        return skuInfoService.findNewPersonList();
     }
 }
